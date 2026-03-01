@@ -1,0 +1,178 @@
+{
+  "_meta": {
+    "description": "Motor and transmission parameters for Unitree G1 energy modeling (Problem 4)",
+    "data_source": "Estimated from typical high-torque actuator specifications",
+    "companion_files": {
+      "geometry": "robot_geometry.json (required for link mass and inertia)",
+      "constraints": "motion_constraints_unified.json (required for joint limits)"
+    }
+  },
+  
+  "battery_system": {
+    "chemistry": "Lithium-ion 16S (16 cells in series)",
+    "voltage_max_V": 67.2,
+    "voltage_nominal_V": 58.8,
+    "voltage_min_V": 48.0,
+    "capacity_Ah": 15.0,
+    "total_energy_Wh": 882.0,
+    "energy_calculation_note": "882 Wh = 58.8 V × 15 Ah (using nominal voltage)",
+    "usable_energy_Wh": 794.0,
+    "usable_energy_note": "Assuming 90% depth-of-discharge for battery longevity"
+  },
+  
+  "system_efficiency": {
+    "inverter_efficiency": 0.95,
+    "gearbox_efficiency": 0.85,
+    "overall_mechanical_efficiency": 0.80,
+    "efficiency_note": "η_overall = η_inverter × η_gearbox × other_losses ≈ 0.95 × 0.85 × 0.99 ≈ 0.80",
+    "usage_guidance": "Apply η_overall to convert joint mechanical power to electrical power: P_elec = P_mech / η_overall"
+  },
+  
+  "joint_groups": {
+    "description": "Joints are categorized by torque capacity and load characteristics",
+    
+    "arm_joints": {
+      "joint_list": [
+        "left_shoulder_pitch_joint", "left_shoulder_roll_joint", "left_shoulder_yaw_joint",
+        "left_elbow_joint", "left_wrist_roll_joint",
+        "right_shoulder_pitch_joint", "right_shoulder_roll_joint", "right_shoulder_yaw_joint",
+        "right_elbow_joint", "right_wrist_roll_joint"
+      ],
+      "electrical_parameters": {
+        "Kt_base_Nm_per_A": 0.2,
+        "Kt_effective_Nm_per_A": 2.0,
+        "Kt_calculation": "Kt_effective = Kt_base × gear_ratio = 0.2 × 10 = 2.0",
+        "resistance_ohm": 0.3,
+        "current_calculation": "I_motor = τ_joint / Kt_effective"
+      },
+      "mechanical_parameters": {
+        "gear_ratio": 10.0,
+        "gear_type": "Harmonic drive (strain wave gearing)",
+        "friction_viscous_Nms_per_rad": 0.05,
+        "friction_coulomb_Nm": 0.5,
+        "rotor_inertia_kg_m2": 0.00005,
+        "friction_model": "τ_friction = τ_coulomb × sign(ω) + B_viscous × ω"
+      },
+      "thermal_parameters": {
+        "thermal_resistance_K_per_W": 2.5,
+        "ambient_temperature_C": 25.0,
+        "max_winding_temperature_C": 85.0,
+        "thermal_note": "For continuous operation: ΔT = P_copper × R_thermal ≤ 60 K"
+      }
+    },
+    
+    "leg_heavy_joints": {
+      "description": "High-torque joints bearing main body weight",
+      "joint_list": [
+        "left_hip_roll_joint", "left_knee_joint",
+        "right_hip_roll_joint", "right_knee_joint"
+      ],
+      "electrical_parameters": {
+        "Kt_base_Nm_per_A": 0.4,
+        "Kt_effective_Nm_per_A": 6.0,
+        "Kt_calculation": "Kt_effective = 0.4 × 15 = 6.0",
+        "resistance_ohm": 0.08
+      },
+      "mechanical_parameters": {
+        "gear_ratio": 15.0,
+        "gear_type": "Planetary gearbox with quasi-direct-drive motor",
+        "friction_viscous_Nms_per_rad": 0.2,
+        "friction_coulomb_Nm": 1.5,
+        "rotor_inertia_kg_m2": 0.0002
+      },
+      "thermal_parameters": {
+        "thermal_resistance_K_per_W": 1.8,
+        "ambient_temperature_C": 25.0,
+        "max_winding_temperature_C": 85.0
+      }
+    },
+    
+    "leg_medium_joints": {
+      "description": "Medium-torque joints for hip actuation and waist rotation",
+      "joint_list": [
+        "left_hip_pitch_joint", "left_hip_yaw_joint",
+        "right_hip_pitch_joint", "right_hip_yaw_joint",
+        "waist_yaw_joint"
+      ],
+      "electrical_parameters": {
+        "Kt_base_Nm_per_A": 0.35,
+        "Kt_effective_Nm_per_A": 4.2,
+        "Kt_calculation": "Kt_effective = 0.35 × 12 = 4.2",
+        "resistance_ohm": 0.12
+      },
+      "mechanical_parameters": {
+        "gear_ratio": 12.0,
+        "friction_viscous_Nms_per_rad": 0.15,
+        "friction_coulomb_Nm": 1.0,
+        "rotor_inertia_kg_m2": 0.00015
+      },
+      "thermal_parameters": {
+        "thermal_resistance_K_per_W": 2.0,
+        "ambient_temperature_C": 25.0,
+        "max_winding_temperature_C": 85.0
+      }
+    },
+    
+    "leg_light_joints": {
+      "description": "Ankle joints for foot orientation control",
+      "joint_list": [
+        "left_ankle_pitch_joint", "left_ankle_roll_joint",
+        "right_ankle_pitch_joint", "right_ankle_roll_joint"
+      ],
+      "electrical_parameters": {
+        "Kt_base_Nm_per_A": 0.25,
+        "Kt_effective_Nm_per_A": 2.5,
+        "Kt_calculation": "Kt_effective = 0.25 × 10 = 2.5",
+        "resistance_ohm": 0.2
+      },
+      "mechanical_parameters": {
+        "gear_ratio": 10.0,
+        "friction_viscous_Nms_per_rad": 0.1,
+        "friction_coulomb_Nm": 0.8,
+        "rotor_inertia_kg_m2": 0.00008
+      },
+      "thermal_parameters": {
+        "thermal_resistance_K_per_W": 3.0,
+        "ambient_temperature_C": 25.0,
+        "max_winding_temperature_C": 85.0
+      }
+    }
+  },
+  
+  "power_calculation_formulas": {
+    "description": "Mathematical models for energy consumption analysis",
+    
+    "instantaneous_power_W": {
+      "total": "P_total = P_mechanical + P_copper + P_friction",
+      "mechanical": "P_mechanical = (τ_joint × ω_joint) / η_mechanical",
+      "copper_loss": "P_copper = I_motor² × R_motor",
+      "friction_loss": "P_friction = τ_friction × |ω_joint|",
+      "note": "All power components are always positive (dissipative)"
+    },
+    
+    "motor_current_A": {
+      "formula": "I_motor = τ_joint / Kt_effective",
+      "note": "Assumes ideal torque-current relationship; neglects back-EMF limit"
+    },
+    
+    "friction_torque_Nm": {
+      "formula": "τ_friction = τ_coulomb × sign(ω_joint) + B_viscous × ω_joint",
+      "coulomb_note": "Coulomb friction dominates at low speeds (Problem 1 static holding, Problem 3 slow movements)",
+      "viscous_note": "Viscous friction dominates at high speeds (Problem 2 walking dynamics)"
+    },
+    
+    "total_energy_J": {
+      "formula": "E_total = ∫₀ᵀ P_total(t) dt",
+      "numerical_integration": "Use trapezoidal rule or Simpson's rule for discrete trajectory data",
+      "battery_check": "Verify E_total_Wh = E_total_J / 3600 ≤ battery usable_energy_Wh"
+    }
+  },
+  
+  "modeling_notes": {
+    "assumption_1": "Motor operates in torque-control mode; voltage and back-EMF limits are not considered",
+    "assumption_2": "Gearbox efficiency is constant; actual efficiency varies with load and speed",
+    "assumption_3": "Thermal transients are neglected; steady-state thermal model is used",
+    "assumption_4": "Iron losses (eddy current, hysteresis) are lumped into overall efficiency factor",
+    "validation_note": "Parameter values are estimates; sensitivity analysis is recommended in optimization phase"
+  }
+}

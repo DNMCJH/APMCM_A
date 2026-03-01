@@ -1,0 +1,296 @@
+{
+  "_meta": {
+    "description": "Unified kinematic, dynamic, and motor parameters for Unitree G1 humanoid robot",
+    "data_source": "Derived from URDF specification and typical high-torque motor characteristics",
+    "units": {
+      "angle": "radians",
+      "angular_velocity": "rad/s",
+      "torque": "Nm (Newton-meter)",
+      "resistance": "Ohm",
+      "current": "Ampere",
+      "voltage": "Volt",
+      "energy": "Wh (Watt-hour)"
+    }
+  },
+  
+  "safety_thresholds": {
+    "description": "Thermal and electrical safety limits for continuous operation",
+    "max_motor_temperature_celsius": 85.0,
+    "max_instantaneous_current_A": 60.0,
+    "max_continuous_current_RMS_A": 20.0,
+    "optimization_note": "Energy optimization should prioritize keeping torque within 'effort_continuous' range to minimize heat accumulation and extend operational lifespan"
+  },
+  
+  "joint_limits": {
+    "_description": "Kinematic and dynamic limits for all actuated joints. Each joint specifies: position range [lower, upper], maximum velocity, peak torque (short-duration), continuous torque (sustainable), and zero position (initial configuration)",
+    
+    "left_shoulder_pitch_joint": {
+      "lower": -3.0892,
+      "upper": 2.6704,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": 0.0
+    },
+    "left_shoulder_roll_joint": {
+      "lower": -1.5882,
+      "upper": 2.2515,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": 0.0
+    },
+    "left_shoulder_yaw_joint": {
+      "lower": -2.618,
+      "upper": 2.618,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": 0.0
+    },
+    "left_elbow_joint": {
+      "lower": -1.0472,
+      "upper": 2.0944,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": -1.5708,
+      "note": "Zero position at -π/2 rad corresponds to forearm extended forward in initial posture"
+    },
+    "left_wrist_roll_joint": {
+      "lower": -1.9722,
+      "upper": 1.9722,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": 0.0
+    },
+    
+    "right_shoulder_pitch_joint": {
+      "lower": -3.0892,
+      "upper": 2.6704,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": 0.0
+    },
+    "right_shoulder_roll_joint": {
+      "lower": -2.2515,
+      "upper": 1.5882,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": 0.0
+    },
+    "right_shoulder_yaw_joint": {
+      "lower": -2.618,
+      "upper": 2.618,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": 0.0
+    },
+    "right_elbow_joint": {
+      "lower": -1.0472,
+      "upper": 2.0944,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": -1.5708,
+      "note": "Zero position at -π/2 rad"
+    },
+    "right_wrist_roll_joint": {
+      "lower": -1.9722,
+      "upper": 1.9722,
+      "velocity": 37.0,
+      "effort_peak": 25.0,
+      "effort_continuous": 8.0,
+      "zero_position": 0.0
+    },
+    
+    "waist_yaw_joint": {
+      "lower": -2.618,
+      "upper": 2.618,
+      "velocity": 32.0,
+      "effort_peak": 88.0,
+      "effort_continuous": 30.0,
+      "zero_position": 0.0
+    },
+    
+    "left_hip_pitch_joint": {
+      "lower": -2.5307,
+      "upper": 2.8798,
+      "velocity": 32.0,
+      "effort_peak": 88.0,
+      "effort_continuous": 30.0,
+      "zero_position": 0.0
+    },
+    "left_hip_roll_joint": {
+      "lower": -0.5236,
+      "upper": 2.9671,
+      "velocity": 20.0,
+      "effort_peak": 139.0,
+      "effort_continuous": 45.0,
+      "zero_position": 0.0
+    },
+    "left_hip_yaw_joint": {
+      "lower": -2.7576,
+      "upper": 2.7576,
+      "velocity": 32.0,
+      "effort_peak": 88.0,
+      "effort_continuous": 30.0,
+      "zero_position": 0.0
+    },
+    "left_knee_joint": {
+      "lower": -0.0872,
+      "upper": 2.8798,
+      "velocity": 20.0,
+      "effort_peak": 139.0,
+      "effort_continuous": 45.0,
+      "zero_position": 0.0
+    },
+    "left_ankle_pitch_joint": {
+      "lower": -0.8726,
+      "upper": 0.5236,
+      "velocity": 37.0,
+      "effort_peak": 50.0,
+      "effort_continuous": 15.0,
+      "zero_position": 0.0
+    },
+    "left_ankle_roll_joint": {
+      "lower": -0.2618,
+      "upper": 0.2618,
+      "velocity": 37.0,
+      "effort_peak": 50.0,
+      "effort_continuous": 15.0,
+      "zero_position": 0.0
+    },
+    
+    "right_hip_pitch_joint": {
+      "lower": -2.5307,
+      "upper": 2.8798,
+      "velocity": 32.0,
+      "effort_peak": 88.0,
+      "effort_continuous": 30.0,
+      "zero_position": 0.0
+    },
+    "right_hip_roll_joint": {
+      "lower": -2.9671,
+      "upper": 0.5236,
+      "velocity": 20.0,
+      "effort_peak": 139.0,
+      "effort_continuous": 45.0,
+      "zero_position": 0.0
+    },
+    "right_hip_yaw_joint": {
+      "lower": -2.7576,
+      "upper": 2.7576,
+      "velocity": 32.0,
+      "effort_peak": 88.0,
+      "effort_continuous": 30.0,
+      "zero_position": 0.0
+    },
+    "right_knee_joint": {
+      "lower": -0.0872,
+      "upper": 2.8798,
+      "velocity": 20.0,
+      "effort_peak": 139.0,
+      "effort_continuous": 45.0,
+      "zero_position": 0.0
+    },
+    "right_ankle_pitch_joint": {
+      "lower": -0.8726,
+      "upper": 0.5236,
+      "velocity": 37.0,
+      "effort_peak": 50.0,
+      "effort_continuous": 15.0,
+      "zero_position": 0.0
+    },
+    "right_ankle_roll_joint": {
+      "lower": -0.2618,
+      "upper": 0.2618,
+      "velocity": 37.0,
+      "effort_peak": 50.0,
+      "effort_continuous": 15.0,
+      "zero_position": 0.0
+    }
+  },
+  
+  "motor_parameters": {
+    "_description": "Electromechanical parameters for actuator modeling. Values estimated based on typical high-torque density brushless motors with harmonic drive reducers (arms) and quasi-direct-drive actuators (legs)",
+    
+    "_modeling_assumptions": [
+      "Torque constant (Kt) and resistance (R) estimated from typical specifications of high-performance actuators",
+      "Leg joints assume quasi-direct-drive high-torque motors with moderate gear reduction",
+      "Arm joints assume harmonic drive reducers for compact high-ratio transmission",
+      "Friction model combines Coulomb friction (static/kinetic) and viscous damping"
+    ],
+    
+    "arm_joints": {
+      "applicable_to": [
+        "left_shoulder_pitch_joint", "left_shoulder_roll_joint", "left_shoulder_yaw_joint",
+        "left_elbow_joint", "left_wrist_roll_joint",
+        "right_shoulder_pitch_joint", "right_shoulder_roll_joint", "right_shoulder_yaw_joint",
+        "right_elbow_joint", "right_wrist_roll_joint"
+      ],
+      "Kt_base": 0.2,
+      "Kt_base_unit": "Nm/A (motor intrinsic torque constant before gearing)",
+      "resistance_ohm": 0.3,
+      "friction_coulomb_Nm": 0.5,
+      "friction_viscous_Nms": 0.01,
+      "gear_ratio": 10.0,
+      "Kt_effective": 2.0,
+      "Kt_effective_note": "Kt_effective = Kt_base × gear_ratio = 0.2 × 10.0 = 2.0 Nm/A"
+    },
+    
+    "leg_joints": {
+      "applicable_to": [
+        "left_hip_pitch_joint", "left_hip_roll_joint", "left_hip_yaw_joint",
+        "left_knee_joint", "left_ankle_pitch_joint", "left_ankle_roll_joint",
+        "right_hip_pitch_joint", "right_hip_roll_joint", "right_hip_yaw_joint",
+        "right_knee_joint", "right_ankle_pitch_joint", "right_ankle_roll_joint"
+      ],
+      "Kt_base": 0.4,
+      "Kt_base_unit": "Nm/A",
+      "resistance_ohm": 0.08,
+      "friction_coulomb_Nm": 1.5,
+      "friction_viscous_Nms": 0.1,
+      "gear_ratio": 15.0,
+      "Kt_effective": 6.0,
+      "Kt_effective_note": "Kt_effective = Kt_base × gear_ratio = 0.4 × 15.0 = 6.0 Nm/A"
+    },
+    
+    "waist_joint": {
+      "applicable_to": ["waist_yaw_joint"],
+      "Kt_base": 0.35,
+      "Kt_base_unit": "Nm/A",
+      "resistance_ohm": 0.12,
+      "friction_coulomb_Nm": 2.0,
+      "friction_viscous_Nms": 0.15,
+      "gear_ratio": 12.0,
+      "Kt_effective": 4.2,
+      "Kt_effective_note": "Kt_effective = Kt_base × gear_ratio = 0.35 × 12.0 = 4.2 Nm/A",
+      "note": "Waist joint parameters interpolated between arm and leg specifications due to intermediate load characteristics"
+    },
+    
+    "battery": {
+      "voltage_max_V": 67.2,
+      "voltage_nominal_V": 58.8,
+      "capacity_Ah": 15.0,
+      "total_energy_Wh": 882.0,
+      "energy_calculation": "total_energy_Wh = voltage_nominal × capacity = 58.8 × 15.0 = 882.0 Wh"
+    },
+    
+    "power_model": {
+      "description": "Mathematical formulation for instantaneous power consumption and energy calculation",
+      "total_power": "P_total(t) = P_mechanical(t) + P_copper_loss(t) + P_friction(t)",
+      "mechanical_power": "P_mechanical = (τ_joint × ω_joint) / η_mechanical",
+      "copper_loss": "P_copper = I_motor² × R_motor",
+      "friction_loss": "P_friction = τ_friction × ω_joint",
+      "current_calculation": "I_motor = τ_motor / Kt_effective",
+      "friction_torque_model": "τ_friction = τ_coulomb × sign(ω) + B_viscous × ω",
+      "mechanical_efficiency": "η_mechanical ≈ 0.85 (typical for harmonic drives and gearboxes)",
+      "total_energy": "E_total = ∫ P_total(t) dt over the motion duration"
+    }
+  }
+}

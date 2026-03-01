@@ -1,0 +1,31 @@
+{
+    "problem": "Problem 1",
+    "description": "Left arm end-effector coordinates and safety validation",
+    "units": "mm",
+    "input_parameters": {
+        "elevation_angle_deg": 60,
+        "azimuthal_angle_deg": 30,
+        "arm_length_mm": 338.0
+    },
+    "coordinates": {
+        "x": 253.5,
+        "y": 146.3583,
+        "z": 169.0
+    },
+    "estimated_joint_angles_rad": {
+        "shoulder_pitch": 0.5236,
+        "shoulder_yaw": 0.5236
+    },
+    "safety_check": {
+        "safe": true,
+        "details": [],
+        "calc": {
+            "gravity_torque_nm": 4.3819,
+            "friction_torque_nm": 0.5,
+            "total_required_torque_nm": 4.8819,
+            "max_continuous_torque_nm": 8.0,
+            "max_peak_torque_nm": 25.0,
+            "estimated_arm_mass_kg": 3.0519
+        }
+    }
+}

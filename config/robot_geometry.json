@@ -1,0 +1,375 @@
+{
+  "_meta": {
+    "robot_name": "g1_23dof_rev_1_0",
+    "description": "Geometric and kinematic parameters for Unitree G1 humanoid robot",
+    "data_source": "Extracted from URDF file (g1.txt) with simplified models for analytical calculations",
+    "coordinate_system": "Right-hand coordinate system: +X forward, +Y left, +Z upward"
+  },
+  
+  "simplified_geometry": {
+    "description": "Simplified geometric parameters for analytical calculations in Problem 1",
+    "arm_length_total_mm": 338.0,
+    "arm_length_note": "Total arm length from shoulder to wrist (ignoring hand dimensions)",
+    "torso_height_mm": 600.0,
+    "torso_height_note": "Approximate height from pelvis to shoulder joint",
+    "coordinate_origin": "Left shoulder joint position",
+    "coordinate_description": "Origin at left shoulder, +X points to robot front (stage direction), +Z points upward, +Y points to robot left side"
+  },
+  
+  "kinematic_chains": {
+    "description": "Joint connectivity and kinematic tree structure",
+    "root_link": "pelvis",
+    "base_joint": "waist_yaw_joint",
+    
+    "left_arm_chain": {
+      "description": "Left arm kinematic chain from torso to hand",
+      "joints": [
+        "left_shoulder_pitch_joint",
+        "left_shoulder_roll_joint",
+        "left_shoulder_yaw_joint",
+        "left_elbow_joint",
+        "left_wrist_roll_joint"
+      ],
+      "dof": 5,
+      "end_effector": "left_wrist_roll_rubber_hand"
+    },
+    
+    "right_arm_chain": {
+      "description": "Right arm kinematic chain from torso to hand",
+      "joints": [
+        "right_shoulder_pitch_joint",
+        "right_shoulder_roll_joint",
+        "right_shoulder_yaw_joint",
+        "right_elbow_joint",
+        "right_wrist_roll_joint"
+      ],
+      "dof": 5,
+      "end_effector": "right_wrist_roll_rubber_hand"
+    },
+    
+    "left_leg_chain": {
+      "description": "Left leg kinematic chain from pelvis to foot",
+      "joints": [
+        "left_hip_pitch_joint",
+        "left_hip_roll_joint",
+        "left_hip_yaw_joint",
+        "left_knee_joint",
+        "left_ankle_pitch_joint",
+        "left_ankle_roll_joint"
+      ],
+      "dof": 6,
+      "end_effector": "left_ankle_roll_link"
+    },
+    
+    "right_leg_chain": {
+      "description": "Right leg kinematic chain from pelvis to foot",
+      "joints": [
+        "right_hip_pitch_joint",
+        "right_hip_roll_joint",
+        "right_hip_yaw_joint",
+        "right_knee_joint",
+        "right_ankle_pitch_joint",
+        "right_ankle_roll_joint"
+      ],
+      "dof": 6,
+      "end_effector": "right_ankle_roll_link"
+    }
+  },
+  
+  "link_dimensions": {
+    "description": "Segment lengths for forward/inverse kinematics calculations",
+    "units": "millimeters",
+    
+    "arms": {
+      "upper_arm_length_mm": 169.0,
+      "upper_arm_note": "Distance from shoulder yaw joint to elbow joint (shoulder pitch to elbow ≈ 0.038 + 0.10352 + 0.080518 ≈ 169 mm effective)",
+      "forearm_length_mm": 169.0,
+      "forearm_note": "Distance from elbow joint to wrist (elbow to wrist ≈ 0.1 + 0.00189 ≈ 169 mm effective)",
+      "hand_length_mm": 0.0,
+      "hand_note": "Hand dimensions ignored for end-effector calculations as per problem statement",
+      "total_arm_reach_mm": 338.0,
+      "symmetry": "Left and right arms have identical dimensions"
+    },
+    
+    "legs": {
+      "thigh_length_mm": 300.0,
+      "thigh_note": "Distance from hip yaw joint to knee joint (hip to knee ≈ 0.17734 + 0.12412 ≈ 300 mm)",
+      "shank_length_mm": 300.0,
+      "shank_note": "Distance from knee joint to ankle pitch joint (knee to ankle ≈ 0.30001 mm)",
+      "foot_height_mm": 30.0,
+      "foot_height_note": "Distance from ankle roll joint to ground contact point",
+      "total_leg_length_mm": 630.0,
+      "symmetry": "Left and right legs have identical dimensions"
+    },
+    
+    "torso": {
+      "pelvis_to_waist_height_mm": 44.0,
+      "waist_to_shoulder_height_mm": 248.0,
+      "shoulder_lateral_offset_mm": 100.0,
+      "shoulder_offset_note": "Lateral distance from torso centerline to shoulder joint"
+    }
+  },
+  
+  "mass_properties": {
+    "description": "Link masses and center-of-mass positions extracted from URDF inertial tags",
+    "units": {
+      "mass": "kilograms",
+      "position": "meters (relative to link coordinate frame)"
+    },
+    "total_robot_mass_kg": 35.0,
+    
+    "major_links": {
+      "pelvis": {
+        "mass_kg": 3.813,
+        "com_xyz_m": [0.0, 0.0, -0.07605],
+        "inertia_kg_m2": {
+          "ixx": 0.010549,
+          "iyy": 0.0093089,
+          "izz": 0.0079184,
+          "ixy": 0.0,
+          "ixz": 2.1e-06,
+          "iyz": 0.0
+        }
+      },
+      
+      "torso_link": {
+        "mass_kg": 6.78,
+        "com_xyz_m": [0.000931, 0.000346, 0.15082],
+        "inertia_kg_m2": {
+          "ixx": 0.05905,
+          "iyy": 0.047014,
+          "izz": 0.025652,
+          "ixy": 3.3302e-05,
+          "ixz": -0.0017715,
+          "iyz": -2.2399e-05
+        }
+      },
+      
+      "head_link": {
+        "mass_kg": 1.036,
+        "com_xyz_m": [0.005267, 0.000299, 0.449869],
+        "inertia_kg_m2": {
+          "ixx": 0.004085051,
+          "iyy": 0.004185212,
+          "izz": 0.001807911,
+          "ixy": -2.543e-06,
+          "ixz": -6.9455e-05,
+          "iyz": -3.726e-06
+        }
+      },
+      
+      "left_hip_pitch_link": {
+        "mass_kg": 1.35,
+        "com_xyz_m": [0.002741, 0.047791, -0.02606],
+        "inertia_kg_m2": {
+          "ixx": 0.001811,
+          "iyy": 0.0014193,
+          "izz": 0.0012812,
+          "ixy": 3.68e-05,
+          "ixz": -3.44e-05,
+          "iyz": 0.000171
+        }
+      },
+      
+      "left_hip_roll_link": {
+        "mass_kg": 1.52,
+        "com_xyz_m": [0.029812, -0.001045, -0.087934],
+        "inertia_kg_m2": {
+          "ixx": 0.0023773,
+          "iyy": 0.0024123,
+          "izz": 0.0016595,
+          "ixy": -3.8e-06,
+          "ixz": -0.0003908,
+          "iyz": 1.84e-05
+        }
+      },
+      
+      "left_hip_yaw_link": {
+        "mass_kg": 1.702,
+        "com_xyz_m": [-0.057709, -0.010981, -0.15078],
+        "inertia_kg_m2": {
+          "ixx": 0.0057774,
+          "iyy": 0.0076124,
+          "izz": 0.003149,
+          "ixy": -0.0005411,
+          "ixz": -0.0023948,
+          "iyz": -0.0007072
+        }
+      },
+      
+      "left_knee_link": {
+        "mass_kg": 1.932,
+        "com_xyz_m": [0.005457, 0.003964, -0.12074],
+        "inertia_kg_m2": {
+          "ixx": 0.011329,
+          "iyy": 0.011277,
+          "izz": 0.0015168,
+          "ixy": 4.82e-05,
+          "ixz": -4.49e-05,
+          "iyz": -0.0007146
+        }
+      },
+      
+      "left_ankle_pitch_link": {
+        "mass_kg": 0.074,
+        "com_xyz_m": [-0.007269, 0.0, 0.011137],
+        "inertia_kg_m2": {
+          "ixx": 8.4e-06,
+          "iyy": 1.89e-05,
+          "izz": 1.26e-05,
+          "ixy": 0.0,
+          "ixz": -2.9e-06,
+          "iyz": 0.0
+        }
+      },
+      
+      "left_ankle_roll_link": {
+        "mass_kg": 0.608,
+        "com_xyz_m": [0.026505, 0.0, -0.016425],
+        "inertia_kg_m2": {
+          "ixx": 0.0002231,
+          "iyy": 0.0016161,
+          "izz": 0.0016667,
+          "ixy": 2.0e-07,
+          "ixz": 8.91e-05,
+          "iyz": -1.0e-07
+        }
+      },
+      
+      "left_shoulder_pitch_link": {
+        "mass_kg": 0.718,
+        "com_xyz_m": [0.0, 0.035892, -0.011628],
+        "inertia_kg_m2": {
+          "ixx": 0.0004291,
+          "iyy": 0.000453,
+          "izz": 0.000423,
+          "ixy": -9.2e-06,
+          "ixz": 6.4e-06,
+          "iyz": 2.26e-05
+        }
+      },
+      
+      "left_shoulder_roll_link": {
+        "mass_kg": 0.643,
+        "com_xyz_m": [-0.000227, 0.00727, -0.063243],
+        "inertia_kg_m2": {
+          "ixx": 0.0006177,
+          "iyy": 0.0006912,
+          "izz": 0.0003894,
+          "ixy": -1.0e-06,
+          "ixz": 8.7e-06,
+          "iyz": -5.3e-06
+        }
+      },
+      
+      "left_shoulder_yaw_link": {
+        "mass_kg": 0.734,
+        "com_xyz_m": [0.010773, -0.002949, -0.072009],
+        "inertia_kg_m2": {
+          "ixx": 0.0009988,
+          "iyy": 0.0010605,
+          "izz": 0.0004354,
+          "ixy": 7.9e-06,
+          "ixz": 0.0001412,
+          "iyz": -2.86e-05
+        }
+      },
+      
+      "left_elbow_link": {
+        "mass_kg": 0.6,
+        "com_xyz_m": [0.064956, 0.004454, -0.010062],
+        "inertia_kg_m2": {
+          "ixx": 0.0002891,
+          "iyy": 0.0004152,
+          "izz": 0.0004197,
+          "ixy": 6.53e-05,
+          "ixz": 1.72e-05,
+          "iyz": -5.6e-06
+        }
+      },
+      
+      "left_wrist_roll_rubber_hand": {
+        "mass_kg": 0.35692864,
+        "com_xyz_m": [0.1079465665, 0.00163511945, 0.00202244863],
+        "inertia_kg_m2": {
+          "ixx": 0.00019613494735,
+          "iyy": 0.00200280358206,
+          "izz": 0.00194181412808,
+          "ixy": -4.19816908e-05,
+          "ixz": -3.95086058e-05,
+          "iyz": 2.49774203e-05
+        }
+      }
+    },
+    
+    "symmetry_note": "Right-side links (hip, knee, ankle, shoulder, elbow, wrist) have identical mass properties to their left-side counterparts, with appropriate sign changes in COM y-coordinates and inertia cross-products"
+  },
+  
+  "initial_configuration": {
+    "description": "Zero position (home posture) of all joints as defined in URDF and problem statement",
+    "coordinate_reference": "Problem 1 defines origin at left shoulder for end-effector calculations",
+    "posture_description": "Upright standing posture with arms extended forward horizontally",
+    
+    "joint_angles_rad": {
+      "waist_yaw_joint": 0.0,
+      
+      "left_shoulder_pitch_joint": 0.0,
+      "left_shoulder_roll_joint": 0.0,
+      "left_shoulder_yaw_joint": 0.0,
+      "left_elbow_joint": -1.5708,
+      "left_elbow_note": "Elbow bent 90° to extend forearm forward in +X direction",
+      "left_wrist_roll_joint": 0.0,
+      
+      "right_shoulder_pitch_joint": 0.0,
+      "right_shoulder_roll_joint": 0.0,
+      "right_shoulder_yaw_joint": 0.0,
+      "right_elbow_joint": -1.5708,
+      "right_elbow_note": "Elbow bent 90° to extend forearm forward in +X direction",
+      "right_wrist_roll_joint": 0.0,
+      
+      "left_hip_pitch_joint": 0.0,
+      "left_hip_roll_joint": 0.0,
+      "left_hip_yaw_joint": 0.0,
+      "left_knee_joint": 0.0,
+      "left_ankle_pitch_joint": 0.0,
+      "left_ankle_roll_joint": 0.0,
+      
+      "right_hip_pitch_joint": 0.0,
+      "right_hip_roll_joint": 0.0,
+      "right_hip_yaw_joint": 0.0,
+      "right_knee_joint": 0.0,
+      "right_ankle_pitch_joint": 0.0,
+      "right_ankle_roll_joint": 0.0
+    }
+  },
+  
+  "problem_specific_parameters": {
+    "problem_1": {
+      "description": "Left arm pose calculation with static torque verification",
+      "coordinate_origin": "Left shoulder joint at (0, 0, 0)",
+      "arm_length_mm": 338.0,
+      "target_pose": {
+        "angle_with_body_deg": 60.0,
+        "rotation_left_deg": 30.0,
+        "description": "Arm raised 60° from vertical body axis, rotated 30° to the left"
+      }
+    },
+    
+    "problem_2": {
+      "description": "Linear walking trajectory planning",
+      "start_position_m": [0.0, 0.0, 0.0],
+      "end_position_m": [10.0, 0.0, 0.0],
+      "average_velocity_m_per_s": 2.0,
+      "total_time_s": 5.0,
+      "gait_assumptions": "Simplified bipedal gait with alternating swing and stance phases"
+    },
+    
+    "problem_3": {
+      "description": "Multi-joint coordinated dance movement",
+      "waist_rotation_deg": 45.0,
+      "arm_circle_radius_mm": 300.0,
+      "arm_circle_period_s": 4.0,
+      "movement_coordination": "Arms move in opposite directions while waist rotates and legs maintain balance"
+    }
+  }
+}

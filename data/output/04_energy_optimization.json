@@ -1,0 +1,14 @@
+{
+    "problem": "Problem 4",
+    "baseline_energy_J": {
+        "problem_1": 0.8774205451981825,
+        "problem_2": 3882.063356801097,
+        "problem_3": 1193.282132452882,
+        "total": 5076.222909799178
+    },
+    "optimized_energy_J": {
+        "total": 4216.151094717784,
+        "improvement_percent": 16.943145136930546
+    },
+    "optimization_strategy": "S-Curve Velocity Profile with 30% acceleration phase"
+}
